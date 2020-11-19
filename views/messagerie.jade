@@ -1,0 +1,18 @@
+extends layout
+
+block content
+	h1 Discussion avec #{bot.name}
+	
+	p
+		a(href="/") Accueil
+		| 
+		| » #{bot.name}
+
+
+	ul(id="messages")
+
+	form(method="POST", action="/api/chatbot/#{bot.id}/user/#{userName}/messages", id="form", autocomplete="off")
+		input(type="text", id="inputMessage", name = "Message", placeholder = "Entrez un message")
+		input(type="submit", class="btn")
+	
+	script(src="/script/messagerie.js")

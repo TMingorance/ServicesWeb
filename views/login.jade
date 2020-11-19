@@ -1,0 +1,27 @@
+extends layout
+
+block content
+	h1 Connexion à #{botName}
+
+	p
+		a(href="/") Accueil
+		| 
+		| » #{botName}
+
+	if merror != null
+		p(class="error")= merror
+	else if msuccess != null
+		p(class="success")= msuccess
+
+	form(method="POST", action="/api/chatbot/#{botId}/user")
+		fieldset
+			legend Connexion
+			p
+				label(for="login")
+					| Identifiant :
+				br
+				input(type="text", id = "login", name = "login", minlength = 3, required = true)
+			p
+				input(type="submit", value="Se Connecter")
+			
+

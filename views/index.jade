@@ -1,0 +1,48 @@
+extends layout
+
+
+block content
+  h1= title
+  
+  p
+    | Accueil »
+  
+  p Welcome! Please, choose a chatbot below with whom you would like to talk with.
+  p Use the following link to add our chatbots to your server : 
+    a(href="https://discord.com/oauth2/authorize?client_id=719220377280315523&scope=bot") https://discord.com/oauth2/authorize?client_id=719220377280315523&amp;scope=bot
+    |  or you can also try them here : 
+    a(href="https://discord.gg/JHN3rKx") https://discord.gg/JHN3rKx
+  p Read the readme in our git repository to know how the chatbots work : 
+    a(href="https://gitlab.enssat.fr/Daniel_Zhu/services-web") our Git repository
+    | .
+
+  table
+    tr
+      th.
+        Name
+      th.
+        Rivescript
+      th.
+        Connect
+
+      each bot in botList
+        tr
+          td #{bot.name}
+            br
+            | ID : #{bot.id}
+          td
+            ul
+              each rive, name in bot.rivescript
+                li #{name}
+          td
+            a(href="http://localhost:3000/chatbot/#{bot.id}/login") Connect
+  
+  p
+    | If you want, you could also be admin by clicking
+    | 
+    a(href="/admin") right here
+    | 
+    | but you need to understand french (
+    em
+      | c'est la vie
+    | ).

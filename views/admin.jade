@@ -1,0 +1,92 @@
+extends layout
+
+block content
+
+  h1= title
+  
+  p
+    a(href="/") Accueil
+    | 
+    | »
+    | Administration
+  
+  p Bienvenue sur la page d'administration du site !
+
+  h2 Ajouter et modifier un bot
+  form(method="POST", action="/admin/", enctype="multipart/form-data", autocomplete="off", class="left")
+    fieldset
+      legend Ajouter un chatbot
+      if merror != null
+        p(class="error")= merror
+      p
+        label(for="createbot_name")
+          | Nom du chatbot :
+        br
+        input(type="text", id="createbot_name", name="createbot_name", maxlength="20", minlength="3", required=true)
+      p
+        label(for="createbot_rive")
+          | Fichier
+          code .rive
+        br
+        input(type="file", id="createbot_rive", name="createbot_rive", accept=".rive")
+      p
+        input(type="submit", value="Ajouter le bot")
+        | 
+        input(type="reset")
+  
+  form(method="POST", action="/api/chatbot/1/cerveau?_method=PUT", id="addriveform", enctype="multipart/form-data", autocomplete="off", class="right")
+    fieldset
+      legend Ajouter un fichier rive à un chatbot déjà existant
+      if perror != null
+        p(class="error")= perror
+      p
+        label(for="addfile_chatbot")
+          | Chatbot :
+        br
+        select(id="addfile_chatbot", name="addfile_chatbot", required=true)
+          each bot in botList
+            option(value="#{bot.id}") #{bot.name}
+      p
+        label(for="addfile_name") Fichier à ajouter :
+        br
+        input(type="file", id="addfile_name", name="addfile_name", accept=".rive", required=true)
+      p
+        input(type="submit", value="Ajouter le fichier au chatbot")
+        | 
+        input(type="reset")
+
+  div(style="clear: both;")
+  
+  h2 Liste des chatbots
+  table
+    tr
+      th.
+        Nom
+      th.
+        Rivescript
+      th.
+        Statut
+      th.
+        Accès
+
+    each bot in botList
+      tr
+        td #{bot.name}
+          br
+          | ID : #{bot.id}
+        td
+          ul
+            each rive, name in bot.rivescript
+              li #{name}
+        td 
+          strong
+            if (bot.online.online)
+              | En ligne
+            else
+              | Hors-ligne
+          br
+          | Dernière activité : il y a #{bot.online.last_activity_from_now} min
+        td
+          a(href="/admin/#{bot.id}") Accès
+  
+  script(src="/script/admin.js")

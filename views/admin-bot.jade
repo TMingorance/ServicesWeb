@@ -1,0 +1,39 @@
+extends layout
+
+block content
+    h1= title
+    p
+        a(href="/") Accueil
+        | 
+        | »
+        | 
+        a(href="/admin") Administration
+        | 
+        | » #{bot.name}
+    
+    p Gestion du chatbot #{bot.name}.
+    
+    form(method="POST", action="/admin/#{bot.id}")
+        p
+            label(for="authorized") » Autorisé à discuter sur Discord :
+            | 
+            if bot.discord
+                input(type="checkbox", id="authorized", name="authorized", checked=true)
+            else
+                input(type="checkbox", id="authorized", name="authorized")
+        p
+            | » Supprimer un fichier 
+            code .rive
+            |  (
+            strong
+                | COCHER
+            |  pour supprimer) :
+            each rive, name in bot.rivescript
+                br
+                input(type="checkbox", id="rive_#{rive}" name="#{rive}")
+                | 
+                label(for="rive_#{rive}") #{name} (#{rive})
+        p
+            input(type="submit")
+            | 
+            input(type="reset")

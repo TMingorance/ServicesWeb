@@ -1,0 +1,107 @@
+/*
+ *
+ *
+ *
+ *  Feuille de style
+ *
+ *
+ *
+ */
+
+* {
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: auto;
+}
+
+
+section#content {
+  width: 50%;
+  margin: 100px auto 20px;
+}
+
+h1, h2 {
+  clear: both;
+}
+
+h1 {
+  border-bottom: 1px solid black;
+  font-size: xx-large;
+}
+
+h2 {
+  margin: 20px 0 10px;
+}
+
+table {
+  width: 80%;
+  margin: auto;
+  border-collapse: collapse;
+}
+
+th {
+  background: #F5F5F5;
+}
+
+th, td {
+  border: 1px solid #909090;
+  padding: 5px;
+}
+
+p, li, a {
+  font-size: medium;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.error {
+  color: red;
+}
+
+.success {
+  color: green;
+}
+
+ul#messages {
+  height: 400px;
+  overflow: auto;
+
+  border-left: 3px solid #606060;
+
+  list-style: none;
+  margin: 0 0 5px 0;
+  padding: 0;
+}
+
+ul#messages li {
+  padding: 10px;
+  border-bottom: 1px solid #909090;
+}
+
+ul#messages li:last-child {
+  border: none;
+}
+
+ul#messages li span.msg_author {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #303030;
+}
+
+input#inputMessage {
+  width: 80%;
+}
+
+.left {
+  width: 48%;
+  float: left;
+}
+
+.right {
+  width: 48%;
+  float: right;
+}
